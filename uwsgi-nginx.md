@@ -27,7 +27,7 @@ def application(env, start_response):
 ## run
 
 ````
-uwsgi --socket 127.0.0.1:7100 --protocol=http -w wsgi
+uwsgi --socket :7100 --protocol=http -w wsgi
 
 uwsgi --http 0.0.0.0:7100 --wsgi-file wsgi.py
 
