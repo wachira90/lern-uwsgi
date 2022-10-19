@@ -139,7 +139,7 @@ socket = 127.0.0.1:7100
 
 # Base application directory
 # chdir = /full/path
-chdir  = /my_app
+chdir  = /home/django/test-uwsgi
 
 # WSGI module and callable
 # module = [wsgi_module_name]:[application_callable_name]
@@ -149,6 +149,6 @@ module = app:application
 master = true
 
 # processes = [number of processes]
-processes = 5
+processes = 4
 ````
 
