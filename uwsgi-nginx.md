@@ -121,3 +121,34 @@ uwsgi --pythonpath /path/to/app --module wsgihandler
 uwsgi --module wsgi_module_name --callable application_callable_name
 uwsgi -w wsgi_module_name:application_callable_name
 ````
+
+## example_config.ini  
+
+nano example_config.ini
+
+````
+[uwsgi]
+# -------------
+# Settings:
+# key = value
+# Comments >> #
+# -------------
+
+# socket = [addr:port]
+socket = 127.0.0.1:7100
+
+# Base application directory
+# chdir = /full/path
+chdir  = /my_app
+
+# WSGI module and callable
+# module = [wsgi_module_name]:[application_callable_name]
+module = app:application
+
+# master = [master process (true of false)]
+master = true
+
+# processes = [number of processes]
+processes = 5
+````
+
