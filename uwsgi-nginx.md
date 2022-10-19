@@ -9,6 +9,8 @@
  source env/bin/activate
  pip install uwsgi
  
+ uwsgi --version
+ 
 ````
 
 ## wsgi.py
@@ -18,7 +20,7 @@ nano wsgi.py
 ````
 def application(env, start_response):
     start_response('200 OK', [('Content-Type', 'text/html')])
-    return ["Hello!"]
+    return [b"Hello World"]
 ````
 
 
@@ -26,6 +28,12 @@ def application(env, start_response):
 
 ````
 uwsgi --socket 127.0.0.1:7100 --protocol=http -w wsgi
+
+uwsgi --http 0.0.0.0:7100 --wsgi-file wsgi.py
+
+uwsgi --http :7100 --wsgi-file wsgi.py
+
+uwsgi --http :7100 --wsgi-file wsgi.py --master --processes 4 --threads 2
 ````
 
 ## nginx config
@@ -151,4 +159,26 @@ master = true
 # processes = [number of processes]
 processes = 4
 ````
+
+uwsgi --ini example_config.ini    
+
+
+## example_config.json
+
+nano example_config.json
+
+````
+{
+    "uwsgi": {
+        "socket": ["127.0.0.1:8080"],
+        "module": "my_app:app",
+        "master": true,
+        "processes": 4,
+    }
+}
+
+````
+
+uwsgi --json example_config.json
+
 
