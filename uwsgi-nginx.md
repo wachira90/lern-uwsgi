@@ -36,6 +36,25 @@ uwsgi --http :7100 --wsgi-file wsgi.py
 uwsgi --http :7100 --wsgi-file wsgi.py --master --processes 4 --threads 2
 ````
 
+- master รันโปรเซสหลัก (master) ด้วย
+
+- processes จำนวนโปรเซสที่รัน
+
+- threads จำนวน thread ที่ใช้
+
+## result 
+
+````
+dev@ubuntu-1604:~$ ps -ef | grep wsgi
+dev 4075 3297 0 15:48 pts/0 00:00:00 uwsgi --http :9090 --wsgi-file hello.py --master --processes 4 --threads 2
+dev 4076 4075 0 15:48 pts/0 00:00:00 uwsgi --http :9090 --wsgi-file hello.py --master --processes 4 --threads 2
+dev 4077 4075 0 15:48 pts/0 00:00:00 uwsgi --http :9090 --wsgi-file hello.py --master --processes 4 --threads 2
+dev 4078 4075 0 15:48 pts/0 00:00:00 uwsgi --http :9090 --wsgi-file hello.py --master --processes 4 --threads 2
+dev 4079 4075 0 15:48 pts/0 00:00:00 uwsgi --http :9090 --wsgi-file hello.py --master --processes 4 --threads 2
+dev 4080 4075 0 15:48 pts/0 00:00:00 uwsgi --http :9090 --wsgi-file hello.py --master --processes 4 --threads 2
+````
+
+
 ## nginx config
 
 ````
