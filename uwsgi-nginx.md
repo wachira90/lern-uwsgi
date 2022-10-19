@@ -57,19 +57,27 @@ dev 4080 4075 0 15:48 pts/0 00:00:00 uwsgi --http :9090 --wsgi-file hello.py --m
 
 ## nginx config
 
+### simple 
+
 ````
-worker_processes 1;
+location / {
+    # try_files $uri $uri/ =404;
+    include uwsgi_params;
+    uwsgi_pass 127.0.0.1:9090;
+}
+````
+
+### standard 
+
+````
+worker_processes auto;
 
 events {
-
     worker_connections 1024;
-
 }
 
 http {
-
     sendfile on;
-    
     gzip              on;
     gzip_http_version 1.0;
     gzip_proxied      any;
@@ -83,7 +91,6 @@ http {
 
     # Configuration containing list of application servers
     upstream uwsgicluster {
-    
         server 127.0.0.1:7100;
         # server 127.0.0.1:8081;
         # ..
